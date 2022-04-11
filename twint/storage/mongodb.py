@@ -122,7 +122,7 @@ def Tweet(Tweet, config):
     # actions = []
 
     client = MongoClient(config.MongoDBurl)
-    db = client[config.MongoDB.db]
-    collection = db[config.MongoDB.collection]
+    db = client[config.MongoDBdb]
+    collection = db[config.MongoDBcollection]
     collection.insert_one(actions)
     client.close()
