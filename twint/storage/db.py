@@ -8,7 +8,7 @@ from datetime import datetime
 def Conn(database):
     if database:
         print("[+] Inserting into Database mysql: " + str(database))
-        conn = pymysql.connect(host="tweets.cutfenvnir5l.us-west-2.rds.amazonaws.com",user="admin",password="12345678",database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+        conn = pymysql.connect(host="tweets.cutfenvnir5l.us-west-2.rds.amazonaws.com",user="admin",password="12345678",database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor,port="3304")
         print("conection done...");
         #conn = init(database)
         #if isinstance(conn, str):
