@@ -277,19 +277,19 @@ def tweets(conn, Tweet, config):
         cursor.execute('INSERT INTO tweets VALUES((%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s))', entry)
 
 
-        if config.Favorites:
-            query = 'INSERT INTO favorites VALUES((%s),(%s))'
-            cursor.execute(query, (config.User_id, Tweet.id))
+        # if config.Favorites:
+        #     query = 'INSERT INTO favorites VALUES((%s),(%s))'
+        #     cursor.execute(query, (config.User_id, Tweet.id))
 
-        if Tweet.retweet:
-            query = 'INSERT INTO retweets VALUES((%s),(%s),(%s),(%s),(%s))'
-            _d = datetime.timestamp(datetime.strptime(Tweet.retweet_date, "%Y-%m-%d %H:%M:%S"))
-            cursor.execute(query, (int(Tweet.user_rt_id), Tweet.user_rt, Tweet.id, int(Tweet.retweet_id), _d))
+        # if Tweet.retweet:
+        #     query = 'INSERT INTO retweets VALUES((%s),(%s),(%s),(%s),(%s))'
+        #     _d = datetime.timestamp(datetime.strptime(Tweet.retweet_date, "%Y-%m-%d %H:%M:%S"))
+        #     cursor.execute(query, (int(Tweet.user_rt_id), Tweet.user_rt, Tweet.id, int(Tweet.retweet_id), _d))
 
-        if Tweet.reply_to:
-            for reply in Tweet.reply_to:
-                query = 'INSERT INTO replies VALUES((%s),(%s),(%s))'
-                cursor.execute(query, (Tweet.id, int(reply['user_id']), reply['username']))
+        # if Tweet.reply_to:
+        #     for reply in Tweet.reply_to:
+        #         query = 'INSERT INTO replies VALUES((%s),(%s),(%s))'
+        #         cursor.execute(query, (Tweet.id, int(reply['user_id']), reply['username']))
 
         conn.commit()
     except pymysql.IntegrityError:
