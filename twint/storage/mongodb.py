@@ -124,5 +124,5 @@ def Tweet(Tweet, config):
     client = MongoClient(config.MongoDBurl)
     db = client[config.MongoDBdb]
     collection = db[config.MongoDBcollection]
-    collection.insert_one({"index":"Sensex","data":j_data})
+    collection.insert_one({"index":"tweet","data":j_data})
     client.close()
