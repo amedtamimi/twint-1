@@ -66,51 +66,51 @@ def Tweet(Tweet, config):
                 "near": config.Near
                 }
             }
-    if retweet is not None:
-        j_data["_source"].update({"user_rt_id": Tweet.user_rt_id})
-        j_data["_source"].update({"user_rt": Tweet.user_rt})
-        j_data["_source"].update({"retweet_id": Tweet.retweet_id})
-        j_data["_source"].update({"retweet_date": Tweet.retweet_date})
-    if Tweet.reply_to:
-        j_data["_source"].update({"reply_to": Tweet.reply_to})
-    if Tweet.photos:
-        _photos = []
-        for photo in Tweet.photos:
-            _photos.append(photo)
-        j_data["_source"].update({"photos": _photos})
-    if Tweet.thumbnail:
-        j_data["_source"].update({"thumbnail": Tweet.thumbnail})
-    if Tweet.mentions:
-        _mentions = []
-        for mention in Tweet.mentions:
-            _mentions.append(mention)
-        j_data["_source"].update({"mentions": _mentions})
-    if Tweet.urls:
-        _urls = []
-        for url in Tweet.urls:
-            _urls.append(url)
-        j_data["_source"].update({"urls": _urls})
-    if config.Near or config.Geo:
-        if not _is_near_def:
-            __geo = ""
-            __near = ""
-            if config.Geo:
-                __geo = config.Geo
-            if config.Near:
-                __near = config.Near
-            _is_near_def = getLocation(__near + __geo, near=True)
-        if _near:
-            j_data["_source"].update({"geo_near": _near})
-    if Tweet.place:
-        _t_place = getLocation(Tweet.place)
-        if _t_place:
-            j_data["_source"].update({"geo_tweet": getLocation(Tweet.place)})
-    if Tweet.source:
-        j_data["_source"].update({"source": Tweet.Source})
-    if config.Translate:
-        j_data["_source"].update({"translate": Tweet.translate})
-        j_data["_source"].update({"trans_src": Tweet.trans_src})
-        j_data["_source"].update({"trans_dest": Tweet.trans_dest})
+    # if retweet is not None:
+    #     j_data["_source"].update({"user_rt_id": Tweet.user_rt_id})
+    #     j_data["_source"].update({"user_rt": Tweet.user_rt})
+    #     j_data["_source"].update({"retweet_id": Tweet.retweet_id})
+    #     j_data["_source"].update({"retweet_date": Tweet.retweet_date})
+    # if Tweet.reply_to:
+    #     j_data["_source"].update({"reply_to": Tweet.reply_to})
+    # if Tweet.photos:
+    #     _photos = []
+    #     for photo in Tweet.photos:
+    #         _photos.append(photo)
+    #     j_data["_source"].update({"photos": _photos})
+    # if Tweet.thumbnail:
+    #     j_data["_source"].update({"thumbnail": Tweet.thumbnail})
+    # if Tweet.mentions:
+    #     _mentions = []
+    #     for mention in Tweet.mentions:
+    #         _mentions.append(mention)
+    #     j_data["_source"].update({"mentions": _mentions})
+    # if Tweet.urls:
+    #     _urls = []
+    #     for url in Tweet.urls:
+    #         _urls.append(url)
+    #     j_data["_source"].update({"urls": _urls})
+    # if config.Near or config.Geo:
+    #     if not _is_near_def:
+    #         __geo = ""
+    #         __near = ""
+    #         if config.Geo:
+    #             __geo = config.Geo
+    #         if config.Near:
+    #             __near = config.Near
+    #         _is_near_def = getLocation(__near + __geo, near=True)
+    #     if _near:
+    #         j_data["_source"].update({"geo_near": _near})
+    # if Tweet.place:
+    #     _t_place = getLocation(Tweet.place)
+    #     if _t_place:
+    #         j_data["_source"].update({"geo_tweet": getLocation(Tweet.place)})
+    # if Tweet.source:
+    #     j_data["_source"].update({"source": Tweet.Source})
+    # if config.Translate:
+    #     j_data["_source"].update({"translate": Tweet.translate})
+    #     j_data["_source"].update({"trans_src": Tweet.trans_src})
+    #     j_data["_source"].update({"trans_dest": Tweet.trans_dest})
 
     actions.append(j_data)
 
@@ -124,5 +124,5 @@ def Tweet(Tweet, config):
     client = MongoClient(config.MongoDBurl)
     db = client[config.MongoDBdb]
     collection = db[config.MongoDBcollection]
-    collection.insert_one(actions)
+    collection.insert_one({"index":"Sensex","data":j_data})
     client.close()
