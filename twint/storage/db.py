@@ -260,7 +260,7 @@ def tweets(conn, Tweet, config):
                     Tweet.username,
                     Tweet.name,
                     Tweet.link,
-                    ",".join(Tweet.mentions),
+                    # ",".join(Tweet.mentions),
                     ",".join(Tweet.hashtags),
                     ",".join(Tweet.cashtags),
                     ",".join(Tweet.urls),
@@ -274,7 +274,7 @@ def tweets(conn, Tweet, config):
                     Tweet.translate,
                     Tweet.trans_src,
                     Tweet.trans_dest)
-        cursor.execute('INSERT INTO tweets VALUES((%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s))', entry)
+        cursor.execute('INSERT INTO tweets VALUES((%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s),(%s))', entry)
 
 
         # if config.Favorites:
