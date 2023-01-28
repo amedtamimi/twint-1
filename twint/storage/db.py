@@ -10,8 +10,8 @@ import streamlit as st
 def Conn(database):
     if database:
         print("[+] Inserting into Database mysql: " + str(database))
-        
-        conn = pymysql.connect(host="tweets.cutfenvnir5l.us-west-2.rds.amazonaws.com",user=st.secrets["db_username"],password=st.secrets["db_password"],database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor,port=3304)
+        # user=st.secrets["db_username"],password=st.secrets["db_password"]
+        conn = pymysql.connect(host="containers-us-west-169.railway.app",user="root",password='Bs6sXTSN8HWMAMVyOgNR',database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor,port=6589)
         print("conection done...");
         #conn = init(database)
         #if isinstance(conn, str):
