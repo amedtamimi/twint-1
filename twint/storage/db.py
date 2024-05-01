@@ -11,7 +11,7 @@ def Conn(database):
     if database:
         print("[+] Inserting into Database mysql: " + str(database))
         # user=st.secrets["db_username"],password=st.secrets["db_password"]
-        conn = pymysql.connect(host="containers-us-west-169.railway.app",user="root",password='Bs6sXTSN8HWMAMVyOgNR',database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor,port=6589)
+        conn = pymysql.connect(host="sql8.freemysqlhosting.net",user="sql8703370",password='Bs6sXTSN8HWMAMVyOgNR',database="twitter",charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor,port=6589)
         print("conection done...");
         #conn = init(database)
         #if isinstance(conn, str):
